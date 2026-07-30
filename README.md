@@ -23,25 +23,31 @@ WebReaper is a modular phishing simulation framework designed for security profe
 git clone https://github.com/theanonspider/WebReaper.git
 cd WebReaper
 pip install -r requirements.txt
-
 🚀 Usage
 
 bash
-# Create token
+# Create authorization token (required)
 echo "WEBREAPER_AUTHORIZED" > webreaper.token
 
-# Start server
-python webreaper.py server
+# Start the server
+python webreaper.py
+Access the dashboard at http://localhost:8080
+Login: admin / WebReaper2024!
 
-# Clone a page
-python webreaper.py clone --url https://example.com/login
-🧩 Modules (coming soon)
+🧩 Modules
 
-Page Cloning
-Credential Capture
-Cookie Capture
-Campaign Manager
-Report Generator
+Module	Description
+clone_page	Clone target web pages (HTML, CSS, JS, images)
+credential_capture	Capture submitted credentials from phishing pages
+campaign_manager	Create and manage phishing campaigns
+report_generator	Generate HTML and JSON reports
+🎨 Interface
+
+Web dashboard with:
+
+Campaign management
+Credential viewer
+Statistics overview
 
 👤 Author
 
