@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 🕷️ WebReaper — Advanced Phishing Simulation Framework
-Usage: python webreaper.py --help
 """
 
 import click
@@ -12,10 +11,11 @@ from datetime import datetime
 
 try:
     from rich.console import Console
-    from rich.table import Table
     RICH_AVAILABLE = True
 except ImportError:
     RICH_AVAILABLE = False
+
+from modules.server import WebReaperServer
 
 VERSION = "1.0.0"
 CONFIG_FILE = "config.json"
@@ -24,9 +24,7 @@ BANNER = """
 ╔══════════════════════════════════════════════╗
 ║                                              ║
 ║   🕷️  WEBREAPER — Phishing Framework     ║
-║                                              ║
 ║        Simulation Tool v1.0                 ║
-║                                              ║
 ╚══════════════════════════════════════════════╝
 """
 
@@ -51,15 +49,10 @@ def check_token():
         return False
     return True
 
-@click.group()
+@click.command()
 @click.version_option(version=VERSION, prog_name="WebReaper")
 def main():
     """🕷️ WebReaper — Advanced Phishing Simulation Framework"""
-    pass
-
-@main.command()
-def server():
-    """Start the phishing server"""
     if not check_token():
         sys.exit(1)
     config = load_config()
@@ -67,27 +60,11 @@ def server():
     print(f"[*] Starting WebReaper server...")
     print(f"[*] Host: {config['server']['host']}")
     print(f"[*] Port: {config['server']['port']}")
+    print(f"[*] Login: admin / WebReaper2024!")
     print(f"[*] Time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("-" * 50)
-    print("[i] Server module coming soon...")
-
-@main.command()
-@click.option("--url", "-u", required=True, help="Target URL to clone")
-@click.option("--output", "-o", default="./output", help="Output directory")
-def clone(url, output):
-    """Clone a target webpage"""
-    if not check_token():
-        sys.exit(1)
-    print(f"[*] Cloning {url}...")
-    print(f"[*] Output: {output}")
-    print("[i] Clone module coming soon...")
-
-@main.command()
-def stats():
-    """Show campaign statistics"""
-    if not check_token():
-        sys.exit(1)
-    print("[i] No campaigns yet.")
+    server = WebReaperServer(config)
+    server.run()
 
 if __name__ == "__main__":
     main()
