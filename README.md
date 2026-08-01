@@ -1,54 +1,64 @@
-# 🕷️ WebReaper
-
-> **Advanced phishing simulation framework for authorized security testing.**
-> For Red Team operations and security awareness training.
 
 ---
 
-## 📖 Description
+## 5️⃣ WEBREAPER V1 (5 modules)
 
-WebReaper is a modular phishing simulation framework designed for security professionals. It allows operators to clone websites, capture credentials, manage campaigns, and generate reports for authorized security engagements.
+```markdown
+# 🕷️ WebReaper — Phishing Tool
 
----
-
-## ⚠️ Warning
-
-**This tool is for authorized use only.** Always obtain written permission before deployment.
+> ⚠️ **AVERTISSEMENT** — Usage exclusivement éducatif et défensif.  
+> Toute utilisation non autorisée est **ILLÉGALE** et engage votre responsabilité.
 
 ---
 
-## ⚙️ Installation
+## 📖 Pourquoi WebReaper ?
+
+**WebReaper** est un outil de phishing modulaire pour les tests autorisés.  
+Il permet de cloner des pages, capturer des identifiants et gérer des campagnes.
+
+---
+
+## 🧩 Modules (5)
+
+| Module | Fonction |
+|--------|----------|
+| `clone_page` | Clonage de pages web (HTML/CSS/JS) |
+| `credential_capture` | Capture d’identifiants (POST) |
+| `campaign_manager` | Gestion de campagnes |
+| `report_generator` | Rapports HTML/JSON |
+
+---
+
+## 🔐 Sécurité
 
 ```bash
+echo "WEBREAPER_AUTHORIZED" > webreaper.token
+⚙️ Installation
+bash
+
 git clone https://github.com/theanonspider/WebReaper.git
 cd WebReaper
 pip install -r requirements.txt
-🚀 Usage
-
-bash
-# Create authorization token (required)
 echo "WEBREAPER_AUTHORIZED" > webreaper.token
 
-# Start the server
-python webreaper.py
-Access the dashboard at http://localhost:8080
-Login: admin / WebReaper2024!
+🚀 Exemples d’utilisation
+bash
 
-🧩 Modules
+# 1. Cloner une page
+python webreaper.py clone-page --url https://example.com
 
-Module	Description
-clone_page	Clone target web pages (HTML, CSS, JS, images)
-credential_capture	Capture submitted credentials from phishing pages
-campaign_manager	Create and manage phishing campaigns
-report_generator	Generate HTML and JSON reports
-🎨 Interface
+# 2. Lancer un serveur de capture
+python webreaper.py credential-capture --port 8080
 
-Web dashboard with:
+# 3. Créer une campagne
+python webreaper.py campaign-manager --action create --name "Campagne1"
 
-Campaign management
-Credential viewer
-Statistics overview
+📄 Sortie
 
-👤 Author
+Rapports dans reports/ : HTML.
+⚖️ Licence
 
-@theanonspider
+Usage éducatif et défensif uniquement.
+👤 Auteur
+
+@theanonspider — Cybersécurité éthique. 🐺
